@@ -1,0 +1,415 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+
+<head>
+<title>flight booking</title>
+<LINK REL=StyleSheet HREF="style.css" TYPE="text/css" MEDIA=screen>
+<LINK REL=StyleSheet HREF="home.css" TYPE="text/css" MEDIA=screen>
+<link rel="stylesheet" type="text/css" href="calender.css">
+<script type="text/javascript" src="calendar.js"></script>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+		function validate_form()
+		{
+		var valid=true;
+		if(document.form3.firstname.value==""||document.form3.lastname.value==""||document.form3.age.value==""||(document.form3.gender[0].checked==false&&document.form3.gender[1].checked==false)||document.form3.ph_no.value==""||document.form3.address1.value==""||document.form3.address2.value==""||document.form3.address3.value==""||document.form3.address4.value==""||document.form3.email_id.value==""||document.form3.pack_taken.value==""||document.form3.cost_per_head.value==""||document.form3.no_of_members.value==""||document.form3.date.value==""||document.form3.password.value==""||document.form3.confirm_password.value=="")
+		{
+		valid=false;
+		alert("Please fill in all details!");
+		return valid;
+		}
+		var textpattern1=document.form3.firstname.value;
+		if(testtext(textpattern1))
+		{
+		valid=false;
+		$("#div_firstname").show("slow");
+		}
+		var textpattern2=document.form3.lastname.value;
+		if(testtext(textpattern2))
+		{
+		valid=false;
+		$("#div_lastname").show("slow");
+		}
+		var numberpattern1=document.form3.age.value;
+		if(testnumber(numberpattern1)||parseInt(numberpattern1)<=0||parseInt(numberpattern1)>=100)
+		{
+		valid=false;
+		$("#div_age").show("slow");
+		}
+		if(document.form3.gender[0].checked==false&&document.form3.gender[1].checked==false)
+		{
+		valid=false;
+		$("#div_gender").show("slow");
+		}
+		var numberpattern2=document.form3.ph_no.value;
+		if(testnumber(numberpattern2)||(numberpattern2.length)!=10)
+		{
+		valid=false;
+		$("#div_ph_no").show("slow");
+		}
+		var numberpattern3=document.form3.address4.value;
+		if(testnumber(numberpattern3)||(numberpattern3.length)!=6)
+		{
+		valid=false;
+		$("#div_address4").show("slow");
+		}
+		var mailpattern1=document.form3.email_id.value;
+		if(!(testmail(mailpattern1)))
+		{
+		valid=false;
+		$("#div_email_id").show("slow");
+		}
+		var textpattern3=document.form3.pack_taken.value;
+		if(testtext(textpattern3))
+		{
+		valid=false;
+		$("#div_pack_taken").show("slow");
+		}
+		var numberpattern4=document.form3.cost_per_head.value;
+		if(testnumber(numberpattern4))
+		{
+		valid=false;
+		$("#div_cost_per_head").show("slow");
+		}
+		var numberpattern5=document.form3.no_of_members.value;
+		if(testnumber(numberpattern5)||parseInt(numberpattern5)<=0)
+		{
+		valid=false;
+		$("#div_no_of_members").show("slow");
+		}
+		var d=document.form3.date.value;
+		var m=document.form3.month.value;
+		var y=document.form3.year.value;
+		var today=new Date();
+		var td=today.getDate();
+		var tm=today.getMonth() + 1;
+		var ty=today.getFullYear();
+		if(y<ty)
+		{
+		valid=false;
+		$("#div_date").show("slow");
+		}
+		else if(y==ty)
+		{
+		if(m<tm)
+		{
+		valid=false;
+		$("#div_date").show("slow");
+		}
+		else if(m==tm)
+		{
+		if(d<td)
+		{
+		valid=false;
+		$("#div_date").show("slow");
+		}
+		}
+		}
+		var testpattern1=document.form3.password.value;
+		if((testpattern1.length)<6)
+		{
+		valid=false;
+		$("#div_password").show("slow");
+		}
+		var testpattern2=document.form3.confirm_password.value;
+		if((testpattern2)!==(testpattern1))
+		{
+		valid=false;
+		$("#div_confirm_password").show("slow");
+		}
+		var testpattern3=document.form2.username.value;
+		if((testpattern3.length)<8)
+		{
+		valid=false;
+		$("#div_username").show("slow");
+		}
+		return valid;
+		}
+		function testtext(checktext)
+		{
+		var r="[0-9]";
+		var reg= new RegExp(r);
+		return  reg.test(checktext);
+		}
+		function testmail(checkmail)
+		{
+		var mailpattern="^[\\w-_\.]*[\\w-_\.]\@[\\w]\.+[\\w]+[\\w]$";
+		var regex=new RegExp(mailpattern);
+		return regex.test(checkmail);
+		}
+		function testnumber(checknumber)
+		{
+		var r="[^0-9]";
+		var reg= new RegExp(r);
+		return  reg.test(checknumber);
+		}
+		function hide_div()
+		{
+		$("#submit").click(function(){
+		$(".error").hide("slow");
+		});
+		$("#reset").click(function(){
+		$(".error").hide("slow");
+		});
+		}
+		function opt()
+		{
+		var x=document.getElementById("pack_taken").value;
+    	switch(x)
+		{
+		case  'kingfisher':document.form3.cost_per_head.value='8090'; break;
+		case 'jet_premium':document.form3.cost_per_head.value='7450'; break;
+		case 'air_india':document.form3.cost_per_head.value='7800'; break;
+		case 'air_deccan':document.form3.cost_per_head.value='5700'; break;
+			}
+     	}
+
+		$(document).ready(function(){
+		$(".error").hide();
+		});
+</script>
+<style type="text/css">
+table{
+border-spacing:3;
+font-family:Tw Cen MT;
+font-weight:bold;
+}
+tr
+{
+background:#FFE4C4;
+color:#000;
+
+}
+th{
+background:#E9967A;
+color:#fff;
+}
+td{
+align:"center";
+font-size:12pt;
+}
+ul{font-family:Times new Roman;
+font-size:12pt;}
+
+<style type="text/css">
+html {overflow-y:auto;}
+body {overflow-y:auto;}
+</style>
+<style type="text/css">
+html {overflow-y:auto;}
+body {overflow-y:auto;}
+</style>
+<style type="text/css">
+html, body {height:100%; margin:0; padding:0;}
+#page-background {position:fixed; top:0; left:0; width:100%; height:100%;z-index:-1;}
+</style>
+<!--End of side menu -->
+
+</head>
+
+<body >
+<div id="page-background"><img src="tm.jpg" width="100%" height="100%" alt="Smile" ></div>
+
+<div id="page">
+
+
+<!--main start-->
+<div class="main">
+
+<div id="header">
+<img src="1.jpg"  width="900px" height="20px" align="left" alt="Home" border="inset" />
+<img src="s5.jpg"  width="900px" height="110px" align="left" alt="Home" border="none" />
+<img src="3.jpg"  width="900px" height="20px" align="left" alt="Home" border="inset" />
+
+			<div class="description"></div>
+</div>
+	
+	<div id="mainarea">
+<ul id="list-nav">
+<li><a href="index.html">home</a></li>
+	<li><a href="bus.html">Bus Booking</a></li>
+	<li><a href="flight.html">Flight Booking</a></li>
+	<li><a href="train.html">Train Booking</a></li>
+	<li><a href="about.html">About</a></li>
+	<li><a href="contact.html">Contact</a></li>
+	</ul>
+
+
+<div id="contentarea">
+	
+<center><table cellpadding="13" cellspacing="0" width="500">
+<form name="form3" action="flight_data.php" method="post" onsubmit="return validate_form();">
+<tr>
+<th colspan=3> PLEASE ENTER THE FOLLOWING DETAILS TO BOOK A FLIGHT TICKET . . . </th></center><br>
+</tr>
+
+<tr>
+<td>FIRST NAME:</td>
+<td><input type="text" name="firstname" id="firstname"></td>
+<td><div class="error" id="div_firstname">Characters only</div></td>
+</tr>
+
+
+
+<tr>
+<td>LAST NAME:</td>
+<td><input type="text" name="lastname" id="lastname"></td>
+<td><div class="error" id="div_lastname">Characters only</div></td>
+</tr>
+
+<tr>
+<td>USERNAME:</td>
+<td><input type="text" name="username" id="username"></td>
+<td><div class="error" id="div_username">Minimum 8 characters</div></td>
+</tr>
+
+<tr>
+<td>AGE:</td>
+<td><input type="text" name="age" id="age"></td>
+<td><div class="error" id="div_age">Enter valid age</div></td>
+</tr>
+
+<tr>
+<th colspan=3>GENDER:</th>
+</tr>
+
+<tr>
+<td align="right"><input type="radio" name="gender" id="gender" value="male"></td>
+<td>MALE </td>
+<td rowspan=2><div class="error" id="div_gender">Select a Gender</div></td>
+</tr>
+
+<tr>
+<td align="right"><input type="radio" name="gender" id="gender" value="female"></td>
+<td>FEMALE:</td>
+</tr>
+
+<tr>
+<td>MOBLIE NO:</td>
+<td><input type="text" name="ph_no" id="ph_no"></td>
+<td><div class="error" id="div_ph_no">10-digit Mobile numbers only</div></td>
+</tr>
+
+<tr>
+<th colspan=3>ADDRESS:</th>
+</tr>
+
+<tr>
+<td>BUILDING,LOCALITY:</td>
+<td><input type="text" name="address1" id="address1"></td>
+<td><div class="error" id="div_address1">Enter valid address</div></td>
+</tr>
+
+<tr>
+<td>(STREET NAME):</td>
+<td><input type="text" name="address2" id="address2"></td>
+<td><div class="error" id="div_address2">Enter valid address</div></td>
+</tr>
+
+<tr>
+<td>(CITY):</td>
+<td><input type="text" name="address3" id="address3"></td>
+<td><div class="error" id="div_address3">Enter valid address</div></td>
+</tr>
+
+<tr>
+<td>(PIN NUMBER):</td>
+<td><input type="text" name="address4" id="address4"></td>
+<td><div class="error" id="div_address4">Enter valid pin number</div></td>
+</tr>
+
+<tr>
+<td>EMAIL-ID:</td>
+<td><input type="text" name="email_id" id="email_id"></td>
+<td><div class="error" id="div_email_id">Enter valid email-id</div></td>
+</tr>
+
+<tr>
+<td>SERVICE SELECTED :</td>
+<td><select name="pack_taken" id="pack_taken">
+<option hidden="hidden"></option>
+<option>kingfisher </option>
+<option>jet_premium </option>
+<option>air_india </option>
+<option>air_deccan</option>
+</select>
+</td>
+<td><div class="error" id="div_pack_taken">Enter valid pack</div></td>
+</tr>
+
+<tr>
+<td>COST PER HEAD:</td>
+<td><INPUT TYPE="text" name="cost_per_head" id="cost_per_head" onclick="opt()" readonly="readonly"></td>
+<td><div class="error" id="div_cost_per_head">Figures only</div></td>
+</tr>
+
+<tr>
+<td>NUMBER OF MEMBERS:</td>
+<td><input type="text" name="number_of_members" id="no_of_members"></td>
+<td><div class="error" id="div_no_of_members">Figures only</div></td>
+</tr>
+
+<tr>
+<td>DATE OF JOURNEY:</td>
+<td><input id="element_3_1" name="date" class="element text" size="2" maxlength="2" type="text" readonly="readonly">/<input id="element_3_2" name="month" class="element text" size="2" maxlength="2" type="text" readonly="readonly">/<input id="element_3_3" name="year" class="element text" size="4" maxlength="4" type="text" readonly="readonly"><span id="calendar_3"> <img id="cal" class="datepicker" src="calendar.gif" alt="Pick a date." style="cursor:pointer"></span><script type="text/javascript">
+Calendar.setup({
+inputField	 : "element_3_3",
+baseField    : "element_3",
+displayArea  : "calendar_3",
+button		 : "cal_img_3",
+ifFormat	 : "%B %e, %Y",
+onSelect	 : selectEuropeDate
+});
+</script></td>
+<td><div class="error" id="div_date">Select valid date from the calender</div></td>
+</tr>
+
+<tr>
+<td>PASSWORD:</td>
+<td><input type="password" name="password" id="password"></td>
+<td><div class="error" id="div_password">Minimum 6 characters</div></td>
+</tr>
+
+
+<tr>
+<td>CONFIRM PASSWORD:</td>
+<td><input type="password" name="confirm_password" id="confirm_password"></td>
+<td><div class="error" id="div_confirm_password">Passwords should match</div></td>
+</tr>
+
+<tr><th colspan=3>USE THIS PASSWORD WHENEVER YOU LOG-IN IN FUTURE ALONG WITH THE USER-ID THAT YOU WILL GET AFTER YOU BOOK SUCCESSFULLY WITH US.</th></tr>
+
+<tr>
+<th></th>
+<th><INPUT class="button" type="submit" value="Submit" name="submit" id="submit" onclick="hide_div()"></th>
+<th><input class="button" type="reset" name="reset" id="reset" onclick="hide_div()"></th>
+</tr>
+</form>
+</table>
+
+<div id="lsidebar" >
+      
+	</div>
+		<div id="sidebarnav">
+
+		</div>
+		
+		<div class="widget">
+		
+<br><br>
+
+		
+		
+	</div>
+	</div>
+	</div>
+	<div id="footer">
+	copyright© 2011 Highway Runners and its licensors - All Rights Reserved
+			
+
+</div>
+</div>
+</body>
+
+</html>

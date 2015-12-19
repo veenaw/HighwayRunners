@@ -1,0 +1,244 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+
+<head>
+<title>pilgrimage</title>
+<LINK REL=StyleSheet HREF="style.css" TYPE="text/css" MEDIA=screen>
+<LINK REL=StyleSheet HREF="home.css" TYPE="text/css" MEDIA=screen>
+
+<link rel=stylesheet href="coin-slider.css" TYPE="text/css" MEDIA=screen>
+<script type="text/javascript" src="slideshow/js/jquery-1.3.1.min.js"></script>
+
+<style type="text/css" >
+html {overflow-y:auto;}
+body {overflow-y:auto;}
+</style>
+<style type="text/css">
+html, body {height:100%; margin:0; padding:0;}
+#page-background {position:fixed; top:0; left:0; width:100%; height:100%;z-index:-1;}
+</style>
+<script type="text/javascript" src="js/jquery-1.3.1.min.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function() {		
+	
+	//Execute the slideShow
+	slideShow();
+
+});
+
+function slideShow() {
+
+	//Set the opacity of all images to 0
+	$('#gallery a').css({opacity: 0.0});
+	
+	//Get the first image and display it (set it to full opacity)
+	$('#gallery a:first').css({opacity: 1.0});
+	
+	//Set the caption background to semi-transparent
+	$('#gallery .caption').css({opacity: 0.7});
+
+	//Resize the width of the caption according to the image width
+	$('#gallery .caption').css({width: $('#gallery a').find('img').css('width')});
+	
+	//Get the caption of the first image from REL attribute and display it
+	$('#gallery .content').html($('#gallery a:first').find('img').attr('rel'))
+	.animate({opacity: 0.7}, 400);
+	
+	//Call the gallery function to run the slideshow, 6000 = change to next image after 6 seconds
+	setInterval('gallery()',6000);
+	
+}
+
+function gallery() {
+	
+	//if no IMGs have the show class, grab the first image
+	var current = ($('#gallery a.show')?  $('#gallery a.show') : $('#gallery a:first'));
+
+	//Get next image, if it reached the end of the slideshow, rotate it back to the first image
+	var next = ((current.next().length) ? ((current.next().hasClass('caption'))? $('#gallery a:first') :current.next()) : $('#gallery a:first'));	
+	
+	//Get next image caption
+	var caption = next.find('img').attr('rel');	
+	
+	//Set the fade in effect for the next image, show class has higher z-index
+	next.css({opacity: 0.0})
+	.addClass('show')
+	.animate({opacity: 1.0}, 1000);
+
+	//Hide the current image
+	current.animate({opacity: 0.0}, 1000)
+	.removeClass('show');
+	
+	//Set the opacity to 0 and height to 1px
+	$('#gallery .caption').animate({opacity: 0.0}, { queue:false, duration:0 }).animate({height: '1px'}, { queue:true, duration:300 });	
+	
+	//Animate the caption, opacity to 0.7 and heigth to 100px, a slide up effect
+	$('#gallery .caption').animate({opacity: 0.7},100 ).animate({height: '100px'},500 );
+	
+	//Display the content
+	$('#gallery .content').html(caption);
+	
+	
+}
+
+</script>
+<style type="text/css">
+body{
+	font-family:arial
+}
+
+.clear {
+	clear:both
+}
+
+#gallery {
+	position:relative;
+	padding-left:0px;
+	height:360px;
+
+	display:inline-block;
+}
+	#gallery a {
+		float:left;
+		position:absolute;
+	}
+	
+	#gallery a img {
+		border:none;
+		width:490px;
+	}
+	
+	#gallery a.show {
+		z-index:5;
+	}
+
+	#gallery .caption {
+		z-index:600; 
+		background-color:#000; 
+		color:#ffffff; 
+		height:100px; 
+		width:100%; 
+		position:absolute;
+		bottom:0;
+	}
+
+	#gallery .caption .content {
+		margin:5px
+	}
+	
+	#gallery .caption .content h3 {
+		margin:0;
+		padding:0;
+		color:#1DCCEF;
+	}
+	
+
+</style>
+<!--End of side menu -->
+
+</head>
+
+<body >
+<div id="page-background"><img src="tm.jpg" width="100%" height="100%" alt="Smile"></div>
+
+<div id="page">
+
+
+<!--main start-->
+<div class="main">
+
+<div id="header">
+<img src="1.jpg"  width="900px" height="20px" align="left" alt="Home" border="inset" />
+<img src="s5.jpg"  width="900px" height="110px" align="left" alt="Home" border="none" />
+<img src="3.jpg"  width="900px" height="20px" align="left" alt="Home" border="inset" />
+
+	<div class="description"></div>
+</div>
+	
+	<div id="mainarea">
+
+<ul id="list-nav">
+	<li><a href="index.html">home</a></li>
+	
+	</ul>
+
+
+	<div id="contentarea">
+	
+<div id="lsidebar" >
+ <font face="Showcard Gothic" color="green" size=3>
+		<a href="p1.html" ><p ><img src="vaishnodevi1.jpg" border="none" width="200" height="100" style="opacity:0.8;filter:alpha(opacity=80)"
+	onmouseover="this.style.opacity=1;this.filters.alpha.opacity=100" onmouseout="this.style.opacity=0.8;this.filters.alpha.opacity=80"></img><br/><br/>VAISHNO DEVI YATRA WITH HOVERCRAFT RIDE<br/> SPECIAL ! ! !</p></a><br/><br/>
+	 <a href="p2.html"><p><img src="haridwar.jpg" border="none"width="200" height="100" style="opacity:0.8;filter:alpha(opacity=80)"
+	onmouseover="this.style.opacity=1;this.filters.alpha.opacity=100" onmouseout="this.style.opacity=0.8;this.filters.alpha.opacity=80"/><br/><br/>CHARDHAM  YATRA<br/>YATRAS ! ! !</p></a> <br/><br/>
+	<a href="p3.html"><p><img src="meenakshi-temple.jpg" border="none" width="200" height="100" style="opacity:0.8;filter:alpha(opacity=80)"
+	onmouseover="this.style.opacity=1;this.filters.alpha.opacity=100" onmouseout="this.style.opacity=0.8;this.filters.alpha.opacity=80"/><br/><br/>SOUTH INDIA PILGRIMAGE TOUR WITH WILDLIFE<br/>HOLIDAYS ! ! !</p></a><br/><br/>
+	
+		</font>
+
+</div>
+<div id="gallery">
+	   
+
+	
+	<a href="#">
+		<img  alt="south indian temple" width="580" height="360" title="temple1" rel="<h3>south indian temple</h3>" src="temple1.jpeg"/>
+	</a>
+	<a href="#" class="show">
+		<img alt="scary-face-temple-web" width="580" height="360" title="scary-face-temple-web" rel="<h3>scary-face-temple-web</h3>" src="scary-face-temple-web.jpg" />
+	</a>
+	<a href="#">
+		<img src="Temple in Pondi.jpg" alt="Temple in Pondi" width="580" height="360" title="Temple in Pondi" rel="<h3>Temple in Pondi</h3>"/>
+	</a>
+	<a href="#">
+		<img alt="tamil temple" width="580" height="360" title="tamil temple"  rel="<h3>tamil temple</h3>" src="tamil temple.jpg"/>
+	</a>
+	<a href="#">
+		<img src="vaishno-devi-temple 1.jpg" alt="vaishno-devi-temple 1 width="580" height="360" title="vaishno-devi-temple 1" rel="<h3>vaishno devi temple</h3>"/>
+	</a>	
+	<a href="#">
+		<img src="gateway-mumbai.jpg" alt="gate way of india" width="580" height="360" title="gate way of india" rel="<h3>Mojave</h3>"/>
+	</a>		
+	<a href="#">
+		<img src="kailashanathar-temple3.jpg" alt="kailashanathar-temple" width="580" height="360" title="kailashanathar-temple3" rel="<h3>kailashanathar temple</h3>"/>
+	</a>	
+	<a href="#">
+		<img src="GOLDEN-TEMPLE.jpg" alt="the golden temple" width="580" height="360" title="the golden temple" rel="<h3>Temple in North India</h3>"/>
+	</a>	
+	<a href="#">
+		<img src="temple3.jpg" alt="another temple in india" width="580" height="360" title="temple" rel="<h3>temple</h3>"/>
+	</a>
+	<a href="#">
+		<img src="lotus.jpg" alt="lotus temple of delhi" width="580" height="360" title="lotus temple of delhi"  rel="<h3>Stone</h3>"/>
+	</a>
+	
+	</div>
+        
+	</div>
+
+	
+		<div id="sidebarnav">
+		
+
+
+		</div>
+		
+		<div class="widget">
+		
+<br><br>
+
+		
+		
+	</div>
+	</div>
+	
+	<div id="footer">
+	copyright© 2011 Highway Runners and its licensors - All Rights Reserved
+			</div>
+
+</div></div>
+</body>
+
+</html>
